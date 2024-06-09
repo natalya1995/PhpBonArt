@@ -13,7 +13,7 @@
         </testsuite>
     </testsuites>
     <source>
-        <include>
+        <includae>
             <directory>app</directory>
         </include>
     </source>
