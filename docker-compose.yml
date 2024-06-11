@@ -56,10 +56,10 @@ services:
       - "8025:8025"
       - "1025:1025"
 
-  redis:
-    image: redis:latest
-    command: redis-server --appendonly yes
-    volumes:
-      - ./docker/redis/data:/data
-    ports:
-      - "6379:6379"
+  # redis:
+  #   image: redis:latest
+  #   command: redis-server --appendonly yes
+  #   volumes:
+  #     - ./docker/redis/data:/data
+  #   ports:
+  #     - "6379:6379"
