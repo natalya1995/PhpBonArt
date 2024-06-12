@@ -7,6 +7,7 @@ use App\Http\Controllers\PictureController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\CreatorController;
 use App\Http\Controllers\JanreController;
+use App\Http\Controllers\BookController;
 
 //PICTURES
 Route::get('/pictures', [PictureController::class, 'index']);
@@ -40,3 +41,10 @@ Route::put('/janres/{janre}', [JanreController::class, 'update']);
 Route::delete('/janres/{janre}', [JanreController::class,'update']);
 Route::delete('/janres/{janre}', [JanreController::class, 'destroy']); 
 
+//BOOK
+Route::get('/books', [BookController::class, 'index']);
+Route::post('/books', [BookController::class, 'store']);
+Route::get('/books/{book}', [BookController::class, 'show']);
+Route::put('/books/{book}', [BookController::class, 'update']);
+Route::delete('/books/{book}', [BookController::class,'update']);
+Route::delete('/books/{book}', [BookController::class, 'destroy']); 
