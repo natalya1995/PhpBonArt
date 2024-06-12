@@ -6,7 +6,7 @@ use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\PictureController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\CreatorController;
-
+use App\Http\Controllers\JanreController;
 
 //PICTURES
 Route::get('/pictures', [PictureController::class, 'index']);
@@ -31,3 +31,12 @@ Route::post('/creators', [CreatorController::class, 'store']);
 Route::get('/creators/{creator}', [CreatorController::class, 'show']);
 Route::put('/creators/{creator}', [CreatorController::class, 'update']);
 Route::delete('/creators/{creator}', [CreatorController::class, 'destroy']);
+
+//JANRE
+Route::get('/janres', [JanreController::class, 'index']);
+Route::post('/janres', [JanreController::class, 'store']);
+Route::get('/janres/{janre}', [JanreController::class, 'show']);
+Route::put('/janres/{janre}', [JanreController::class, 'update']);
+Route::delete('/janres/{janre}', [JanreController::class,'update']);
+Route::delete('/janres/{janre}', [JanreController::class, 'destroy']); 
+
