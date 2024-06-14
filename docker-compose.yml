@@ -39,3 +39,11 @@ services:
       PGADMIN_DEFAULT_PASSWORD: tulidu140895@
     depends_on:
       - db
+  react:
+    build:
+      context: ./frontend
+    container_name: myprojectart-react
+    ports:
+      - '3000:80'
+    depends_on:
+      - php

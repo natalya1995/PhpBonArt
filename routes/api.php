@@ -6,9 +6,13 @@ use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\PictureController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\CreatorController;
+use App\Http\Controllers\CreatorController;
 use App\Http\Controllers\JanreController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\Api\BidController;
+use App\Http\Controllers\Api\AuctionController;
+use App\Http\Controllers\ComittentController;
+
 
 //PICTURES
 Route::get('/pictures', [PictureController::class, 'index']);
@@ -50,3 +54,28 @@ Route::get('/books/{book}', [BookController::class, 'show']);
 Route::put('/books/{book}', [BookController::class, 'update']);
 Route::delete('/books/{book}', [BookController::class,'update']);
 Route::delete('/books/{book}', [BookController::class, 'destroy']); 
+
+
+//AUCTION
+Route::get('/auctions', [AuctionController::class, 'index']);
+Route::post('/auctions', [AuctionController::class, 'store']);
+Route::get('/auctions/{auction}', [AuctionController::class, 'show']);
+Route::put('/auctions/{auction}', [AuctionController::class, 'update']);
+Route::delete('/auctions/{auction}', [AuctionController::class,'update']);
+Route::delete('/auctions/{auction}', [AuctionController::class, 'destroy']); 
+
+//BID
+Route::get('/bids', [BidController::class, 'index']);
+Route::post('/bids', [BidController::class, 'store']);
+Route::get('/bids/{bid}', [BidController::class, 'show']);
+Route::put('/bids/{bid}', [BidController::class, 'update']);
+Route::delete('/bids/{bid}', [BidController::class,'update']);
+Route::delete('/bids/{bid}', [BidController::class, 'destroy']); 
+
+//COMITTENT
+Route::get('/comittents', [ComittentController::class, 'index']);
+Route::post('/comittents', [ComittentController::class, 'store']);
+Route::get('/comittents/{comittent}', [ComittentController::class, 'show']);
+Route::put('/comittents/{comittent}', [ComittentController::class, 'update']);
+Route::delete('/comittents/{comittent}', [ComittentController::class,'update']);
+Route::delete('/comittents/{comittent}', [ComittentController::class, 'destroy']); 
