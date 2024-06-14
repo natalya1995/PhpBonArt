@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExampleController;
 use App\Http\Controllers\PictureController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CreatorController;
 use App\Http\Controllers\JanreController;
 use App\Http\Controllers\BookController;
@@ -17,14 +18,15 @@ Route::put('pictures/{id}', [PictureController::class, 'update']);
 Route::delete('pictures/{id}', [PictureController::class, 'destroy']);
 
 //USER
-Route::post('login', [UserController::class, 'login'])->name('login');;
-Route::middleware('auth:api')->group(function () {
-    Route::get('users', [UserController::class, 'index']);
-    Route::post('users', [UserController::class, 'store']);
-    Route::get('users/{user}', [UserController::class, 'show']);
-    Route::put('users/{user}', [UserController::class, 'update']);
-    Route::delete('users/{user}', [UserController::class, 'destroy']);
-});
+Route::get('users', [UserController::class, 'index']);
+Route::get('users/{user}', [UserController::class, 'show']);
+Route::post('users', [UserController::class, 'store']);
+Route::put('users/{user}', [UserController::class, 'update']);
+Route::delete('users/{user}', [UserController::class, 'destroy']);
+
+Route::post('register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
+Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 //CREATOR
 Route::get('/creators', [CreatorController::class, 'index']);

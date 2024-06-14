@@ -27,7 +27,6 @@ class BookController extends Controller
     }
 
     public function update(Request $request, $id)
-
     {   $book = Book::findOrFail($id);
         $book->update($request->all());
         return $book;

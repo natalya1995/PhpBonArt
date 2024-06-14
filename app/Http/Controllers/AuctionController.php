@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Auction;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateAuctionRequest;
 
 class AuctionController extends Controller
 {
@@ -13,41 +14,29 @@ class AuctionController extends Controller
     }
 
   
-    public function store(Request $request)
+    public function store(CreateAuctionRequest $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'img' => 'required|string|max:255',
-            'creator_id' => 'nullable|integer',
-            'description' => 'required|string', 
-            'num_pages' => 'nullable|integer',
-            'num_copy' => 'nullable|integer',
-            'estimate' => 'required|numeric',
-            'location_id' => 'nullable|integer',
-        ]);
+        $validatedData = $request->validated();
+        $auction=Auction::create('validatedData');
+        return response()->json($auction, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+
+    public function show( $id)
     {
-        //
+        return Auction::findOrFail($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+ 
+    public function update(Request $request, $id)
     {
-        //
+        $auction = Auction::findOrFail($id);
+        $auction->update($request->all());
+        return $auction;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy($id)
+    {    $auction->delete();
+        return response(null,204);
     }
 }

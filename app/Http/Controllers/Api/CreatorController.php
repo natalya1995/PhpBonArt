@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Creator;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateCreatorRequest;
 
 class CreatorController extends Controller
 {
@@ -13,38 +14,26 @@ class CreatorController extends Controller
         return Creator::all();
     }
 
-    public function store(Request $request)
+    public function store(CreateCreatorRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'YY' => 'required|string|max:255',
-            'biography' => 'required|string',
-            'picture_id' => 'nullable|exists:pictures,id', // Валидация внешнего ключа 
-        ]);
-
-        return Creator::create($request->all());
+        $validatedData = $request->validated();
+        $creator=Creator::create('validatedData');
+        return response()->json($creator, 201);
     }
 
-    public function show(Creator $creator)
+    public function show($id)
     {
-        return $creator;
+        return Creator::findOrFail($id);
     }
 
-    public function update(Request $request, Creator $creator)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'sometimes|required|string|max:255',
-            'YY' => 'sometimes|required|string|max:255',
-            'biography' => 'sometimes|required|string',
-            'picture_id' => 'nullable|exists:pictures,id', // Валидация внешнего ключа
-        ]);
-
+        $creator = Creator::findOrFail($id);
         $creator->update($request->all());
-
         return $creator;
     }
 
-    public function destroy(Creator $creator)
+    public function destroy($id)
     {
         $creator->delete();
 

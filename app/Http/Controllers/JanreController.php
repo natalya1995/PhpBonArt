@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Janre;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\CreateJanreRequest;
 class JanreController extends Controller
 {
    
@@ -14,27 +14,21 @@ class JanreController extends Controller
 
     public function show($id)
     {
-      return Janre::find($id);
+      return Janre::findOrFail($id);
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name'=>'required|string|max:255',
-            'picture_id'=>'nullable|integer',
-        ]);
-     return Janre::create($request->all());
-  }
+    public function store(CreateJanreRequest $request)
+    { 
+        $validatedData = $request->validated();
+        $janre=Janre::create('validatedData');
+        return response()->json($janre, 201);
+    }
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name'=>'required|string|max:255',
-            'picture_id'=>'nullable|integer',
-        ]);
-        $janre=Janre::find($id);
+        $janre = Janre::findOrFail($id);
         $janre->update($request->all());
-    return $janre;
+        return $janre;
 
     }
 
