@@ -20,18 +20,18 @@ class SectorController extends Controller
         return response()->json($sector, 201);
     }
 
-    public function show(Sector $sector)
+    public function show($id)
     {
         return response()->json($sector->load('pictures'));
     }
 
-    public function update(SectorRequest $request, Sector $sector)
+    public function update(SectorRequest $request,$id)
     {
         $sector->update($request->validated());
         return response()->json($sector);
     }
 
-    public function destroy(Sector $sector)
+    public function destroy($id)
     {
         $sector->delete();
         return response()->json(null, 204);

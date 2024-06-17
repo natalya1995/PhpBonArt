@@ -15,7 +15,7 @@ class SectorRequest extends FormRequest
     {
         return [
             'num' => 'required|integer',
-            'picture_id' => 'required|exists:pictures,id'
+            'picture_id' => 'nullable|exists:pictures,id'
         ];
     }
 }

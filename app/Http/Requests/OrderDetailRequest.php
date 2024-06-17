@@ -17,6 +17,7 @@ class OrderDetailRequest extends FormRequest
             'picture_id' => 'required|exists:pictures,id',
             'price' => 'required|numeric',
             'bids_id' => 'nullable|exists:bids,id',
+            'order_id' => 'nullable|exists:order_details,id',
             'Purchase_type' => 'required|string|max:255',
         ];
     }

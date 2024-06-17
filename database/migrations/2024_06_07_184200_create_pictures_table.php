@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('janre_id')->nullable(true);
             $table->integer('location_id')->nullable(true);
             $table->integer('sector_id')->nullable(true);
-            $table->integer('committent_id')->nullable(true);
+            $table->integer('comittent_id')->nullable(true);
             $table->decimal('estimate');
 
         });

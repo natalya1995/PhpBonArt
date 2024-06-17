@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,7 +9,7 @@ class OrderDetail extends Model
     use HasFactory;
 
     protected $fillable = [
-        'picture_id', 'price', 'bids_id', 'Purchase_type'
+        'picture_id', 'price', 'bids_id', 'order_id', 'Purchase_type'
     ];
 
     public function order()

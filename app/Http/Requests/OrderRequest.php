@@ -17,7 +17,7 @@ class OrderRequest extends FormRequest
             'user_id' => 'required|exists:users,id',
             'status_order' => 'required|string|max:255',
             'sum' => 'required|numeric',
-            'order_detail_id' => 'nullable|exists:order_details,id',
+         
         ];
     }
 }

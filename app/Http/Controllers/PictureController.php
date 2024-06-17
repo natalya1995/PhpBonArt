@@ -23,7 +23,7 @@ class PictureController extends Controller
     public function store(CreatePictresRequest $request)
     {
         $validatedData = $request->validated();
-        $pictures=Picture::create('validatedData');
+        $pictures=Picture::create($validatedData);
         return response()->json($pictures, 201);
     }
 
