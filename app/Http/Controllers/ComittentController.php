@@ -10,16 +10,16 @@ class ComittentController extends Controller
 {
     public function index()
     {
-
         return Comittent::all();
     }
 
-    public function store(Request $request)
+    public function store(CreateComittentRequest $request)
     {
         $validatedData = $request->validated();
-        $comittent=Comittent::create('validatedData');
+        $comittent=Comittent::create($validatedData);
         return response()->json($comittent, 201);
     }
+
     public function show($id)
     {
         return Comittent::findOrFail($id);
@@ -31,9 +31,9 @@ class ComittentController extends Controller
         $comittent->update($request->all());
         return $comittent;
     }
+    
     public function destroy($id)
     {
-        $comittent->delete();
-        return response(null,204);
+        return Comittent::destroy($id);
     }
 }

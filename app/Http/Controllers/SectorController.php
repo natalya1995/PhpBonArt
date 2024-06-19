@@ -10,30 +10,33 @@ class SectorController extends Controller
 {
     public function index()
     {
-        $sectors = Sector::with('pictures')->get();
-        return response()->json($sectors);
+        return Sector::all();
     }
 
     public function store(SectorRequest $request)
     {
-        $sector = Sector::create($request->validated());
-        return response()->json($sector, 201);
+     
+        $validatedData = $request->validated();
+        $sectors=Sector::create($validatedData);
+        return response()->json($sectors, 201);
     }
 
     public function show($id)
     {
-        return response()->json($sector->load('pictures'));
+        return Sector::findOrFail($id);
     }
 
     public function update(SectorRequest $request,$id)
     {
-        $sector->update($request->validated());
-        return response()->json($sector);
+        $sectors = Sector::findOrFail($id);
+        $sectors->update($request->all());
+
+        return $sectors;
     }
 
     public function destroy($id)
     {
-        $sector->delete();
-        return response()->json(null, 204);
+        return Sector::destroy($id);
+    
     }
 }

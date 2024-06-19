@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Creator;
@@ -17,7 +17,7 @@ class CreatorController extends Controller
     public function store(CreateCreatorRequest $request)
     {
         $validatedData = $request->validated();
-        $creator=Creator::create('validatedData');
+        $creator=Creator::create($validatedData);
         return response()->json($creator, 201);
     }
 
@@ -35,8 +35,7 @@ class CreatorController extends Controller
 
     public function destroy($id)
     {
-        $creator->delete();
-
-        return response(null, 204);
+        return Creator::destroy($id);
+      
     }
 }

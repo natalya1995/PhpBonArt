@@ -15,7 +15,7 @@ class LocationRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'picture_id' => 'required|exists:pictures,id',
+            'picture_id' => 'nullable|exists:pictures,id',
         ];
     }
 }

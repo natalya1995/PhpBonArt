@@ -1,9 +1,9 @@
 <?php
 
 namespace Database\Factories;
-
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Comittent;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
 
 class ComittentFactory extends Factory
 {

@@ -20,7 +20,7 @@ class JanreController extends Controller
     public function store(CreateJanreRequest $request)
     { 
         $validatedData = $request->validated();
-        $janre=Janre::create('validatedData');
+        $janre=Janre::create($validatedData);
         return response()->json($janre, 201);
     }
 

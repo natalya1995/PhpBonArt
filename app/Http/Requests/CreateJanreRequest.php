@@ -23,7 +23,7 @@ class CreateJanreRequest extends FormRequest
     {
         return [
             'name'=>'required|string|max:255',
-            'picture_id'=>'nullable|integer',
+            'picture_id'=>'nullable|exists:pictures,id',
         ];
     }
 }

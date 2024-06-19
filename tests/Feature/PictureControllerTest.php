@@ -41,4 +41,52 @@ class PictureControllerTest extends TestCase
         $response->assertStatus(201);
         $this->assertDatabaseHas('pictures', $pictureData);
     }
+      /** @test */
+      public function test_it_can_display_a_picture()
+      {
+          $picture = Picture::factory()->create();
+  
+          $response = $this->get('/api/pictures/' . $picture->id);
+  
+          $response->assertStatus(200)
+                   ->assertJson([
+                   'img' =>$picture->img ,
+                   'title' => $picture->title,
+                   'creator_id' =>$picture->creator_id,
+                   'size' => $picture->size,
+                   'description' => $picture->description,
+                   'janre_id' =>$picture->janre_id,
+                   'location_id' =>$picture->location_id,
+                   'sector_id' => $picture->sector_id,
+                   'comittent_id' =>$picture->comittent_id,
+                   'estimate' => $picture->estimate,
+                   ]);
+      }
+        
+      /** @test */
+      public function it_can_update_a_picture()
+      {
+          $picture = Picture::factory()->create();
+          $updateData = [
+              'title' => 'Updated Title',
+              'description' => 'Updated description',
+              'estimate' => 2000.00,
+          ];
+  
+          $response = $this->put('/api/pictures/' . $picture->id, $updateData);
+  
+          $response->assertStatus(200);
+          $this->assertDatabaseHas('pictures', array_merge(['id' => $picture->id], $updateData));
+      }
+  
+      /** @test */
+      public function it_can_delete_a_picture()
+      {
+          $picture = Picture::factory()->create();
+  
+          $response = $this->delete('/api/pictures/' . $picture->id);
+  
+          $response->assertStatus(200);
+          $this->assertDatabaseMissing('pictures', ['id' => $picture->id]);
+      }
 }

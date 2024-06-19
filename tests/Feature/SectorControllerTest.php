@@ -1,105 +1,64 @@
 <?php
 
-// tests/Feature/SectorControllerTest.php
+namespace Tests\Feature;
 
-use App\Models\Creator;
 use App\Models\Sector;
-use App\Models\Picture;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class SectorControllerTest extends TestCase
 {
-    // use RefreshDatabase;
+    //use RefreshDatabase;
 
-    // /** @test */
-    // public function it_can_list_sectors()
-    // {
-    //     Sector::factory()->count(3)->create();
+    /** @test */
+    public function it_can_create_a_sector()
+    {
+        $sectorData = Sector::factory()->raw();
 
-    //     $response = $this->get('/sectors');
+        $response = $this->post('/api/sectors', $sectorData);
 
-    //     $response->assertStatus(200);
-    //     $response->assertJsonCount(3);
-    // }
+        $response->assertStatus(201);
+        $this->assertDatabaseHas('sectors', $sectorData);
+    }
 
-    // /** @test */
-    // public function it_can_create_a_sector()
-    // {
-    //     $creator = Creator::factory()->create();
+    /** @test */
+    public function it_can_display_a_sector()
+    {
+        $sector = Sector::factory()->create();
 
-    //     $data = [
-    //         'img' => 'https://via.placeholder.com/640x480.png',
-    //         'title' => 'Sample Picture',
-    //         'creator_id' => $creator->id,
-    //         'size' => 'large',
-    //         'description' => 'Sample Description',
-    //         'janre_id' => 1,
-    //         'location_id' => 1,
-    //         'sector_id' => 1,
-    //         'comittent_id' => 1,
-    //         'estimate' => 5000,
-    //     ];
+        $response = $this->get('/api/sectors/' . $sector->id);
 
-    //     $response = $this->post('/sectors', $data);
+        $response->assertStatus(200)
+                 ->assertJson([
+                     'id' => $sector->id,
+                     'num' => $sector->num,
+                     'picture_id'=>null,
+                 ]);
+    }
 
-    //     $response->assertStatus(201);
-    //     $this->assertDatabaseHas('pictures', $data);
-    // }
+    /** @test */
+    public function it_can_update_a_sector()
+    {
+        $sector = Sector::factory()->create();
 
-    // /** @test */
-    // public function it_can_show_a_sector()
-    // {
-    //     $sector = Sector::factory()->create();
+        $updateData = [
+            'num' => 10,
+        ];
 
-    //     $response = $this->get("/sectors/{$sector->id}");
+        $response = $this->put('/api/sectors/' . $sector->id, $updateData);
 
-    //     $response->assertStatus(200);
-    //     $response->assertJson([
-    //         'id' => $sector->id,
-    //         'name' => $sector->name,
-            
-    //     ]);
-    // }
+        $response->assertStatus(200);
+        $this->assertDatabaseHas('sectors', array_merge(['id' => $sector->id], $updateData));
+    }
 
-    // /** @test */
-    // public function it_can_update_a_sector()
-    // {
-    //     $creator = Creator::factory()->create();
-    //     $sector = Sector::factory()->create();
+    /** @test */
+    public function it_can_delete_a_sector()
+    {
+        $sector = Sector::factory()->create();
 
-    //     $data = [
-    //         'img' => 'https://via.placeholder.com/640x480.png/007733?text=consequatur',
-    //         'title' => 'Dolores laboriosam voluptas ullam quos.',
-    //         'creator_id' => $creator->id,
-    //         'size' => 'large',
-    //         'description' => 'Ipsam a et at. Deleniti aspernatur quas dolorum eos vel consequuntur.',
-    //         'janre_id' => 9,
-    //         'location_id' => 2,
-    //         'sector_id' => $sector->id,
-    //         'comittent_id' => 24,
-    //         'estimate' => 6262.02,
-    //     ];
+        $response = $this->delete('/api/sectors/' . $sector->id);
 
-    //     $response = $this->put("/sectors/{$sector->id}", $data);
-
-    //     $response->assertStatus(200);
-    //     $this->assertDatabaseHas('pictures', $data);
-    // }
-
-    // /** @test */
-    // public function it_can_delete_a_sector()
-    // {
-    //     $creator = Creator::factory()->create();
-    //     $sector = Sector::factory()->create();
-    //     $picture = Picture::factory()->create([
-    //         'creator_id' => $creator->id,
-    //         'sector_id' => $sector->id
-    //     ]);
-
-    //     $response = $this->delete("/sectors/{$sector->id}");
-
-    //     $response->assertStatus(200);
-    //     $this->assertDeleted($picture);
-    // }
+        $response->assertStatus(200);
+        $this->assertDatabaseMissing('sectors', ['id' => $sector->id]);
+    }
 }

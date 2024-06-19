@@ -25,7 +25,6 @@ class CreateCreatorRequest extends FormRequest
             'name' => 'sometimes|required|string|max:255',
             'YY' => 'sometimes|required|string|max:255',
             'biography' => 'sometimes|required|string',
-            'picture_id' => 'nullable|exists:pictures,id', // Валидация внешнего ключа
-        ];
+            'picture_id' => 'nullable|exists:pictures,id', ];
     }
 }

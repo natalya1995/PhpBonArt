@@ -10,30 +10,32 @@ class LocationController extends Controller
 {
     public function index()
     {
-        $locations = Location::all();
-        return response()->json($locations);
+        return Location::all();
+        
     }
 
     public function store(LocationRequest $request)
-    {
-        $location = Location::create($request->validated());
+    {  
+        $validatedData = $request->validated();
+        $location=Location::create($validatedData);
         return response()->json($location, 201);
+       
     }
 
-    public function show(Location $location)
+    public function show($id)
     {
-        return response()->json($location);
+        return Location::findOrFail($id);
     }
 
-    public function update(LocationRequest $request, Location $location)
-    {
-        $location->update($request->validated());
-        return response()->json($location);
+    public function update(LocationRequest $request,$id )
+    {  
+        $location = Location::findOrFail($id);
+        $location->update($request->all());
+        return $location;
     }
 
-    public function destroy(Location $location)
+    public function destroy($id)
     {
-        $location->delete();
-        return response()->json(null, 204);
+        return Location::destroy($id);
     }
 }

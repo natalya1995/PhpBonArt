@@ -21,7 +21,7 @@ class CreateComittentRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'IIN' => 'required|string|max:12', 
+            'IIN' => 'required|string|max:255', 
             'num_udv' => 'required|string|max:255',
             'picture_id' => 'nullable|exists:pictures,id',
             'entry_price' => 'required|numeric|min:0',
