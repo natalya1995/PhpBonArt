@@ -16,7 +16,7 @@ class BookController extends Controller
     public function store(CreateBookRequest $request)
     {
         $validatedData = $request->validated();
-        $book=Book::create('validatedData');
+        $book=Book::create($validatedData);
         return response()->json($book, 201);
     }
 
@@ -35,7 +35,7 @@ class BookController extends Controller
     
     public function destroy($id)
     {
-        $book->delete();
-        return response(null,204);
+        return Book::destroy($id);
+      
     }
 }

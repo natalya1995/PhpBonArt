@@ -81,11 +81,11 @@ Route::put('/comittents/{comittent}', [ComittentController::class, 'update']);
 Route::delete('/comittents/{comittent}', [ComittentController::class, 'destroy']); 
 
 //JEWERLY
-Route::get('/jewerlys', [JewerlyController::class, 'index']);
-Route::post('/jewerlys', [JewerlyController::class, 'store']);
-Route::get('/jewerlys/{jewerly}', [JewerlyController::class, 'show']);
-Route::put('/jewerlys/{jewerly}', [JewerlyController::class, 'update']);
-Route::delete('/jewerlys/{jewerly}', [JewerlyController::class, 'destroy']); 
+Route::get('/jewerlies', [JewerlyController::class, 'index']);
+Route::post('/jewerlies', [JewerlyController::class, 'store']);
+Route::get('/jewerlies/{jewerly}', [JewerlyController::class, 'show']);
+Route::put('/jewerlies/{jewerly}', [JewerlyController::class, 'update']);
+Route::delete('/jewerlies/{jewerly}', [JewerlyController::class, 'destroy']); 
 
 //LOCATION
 Route::get('/locations', [LocationController::class, 'index']);

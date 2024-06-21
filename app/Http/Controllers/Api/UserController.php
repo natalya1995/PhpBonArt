@@ -42,9 +42,11 @@ class UserController extends Controller
 
         // Обновить данные пользователя
         $user->update([
-            'name' => $validatedData['name'] ?? $user->name,
-            'email' => $validatedData['email'] ?? $user->email,
-            'password' => isset($validatedData['password']) ? Hash::make($validatedData['password']) : $user->password,
+            'name' => $request->name ?? $user->name,
+            'email' => $request->email ?? $user->email,
+            'password' => $request->password ? Hash::make($request->password) : $user->password,
+            'phone' => $request->phonne ?? $user->phonne,
+            'bit_id' => $request->bids_id ?? $user->bids_id,
         ]);
 
         return response()->json(['message' => 'User updated successfully', 'user' => $user], 200);

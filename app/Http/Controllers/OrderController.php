@@ -10,30 +10,30 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with('orderDetails')->get();
-        return response()->json($orders);
+        return Order::all();
     }
 
     public function store(OrderRequest $request)
     {
-        $order = Order::create($request->validated());
+        $validatedData = $request->validated();
+        $order=Order::create($validatedData);
         return response()->json($order, 201);
     }
 
-    public function show(Order $order)
+    public function show($id)
     {
-        return response()->json($order->load('orderDetails'));
+        return Order::findOrFail($id);
     }
 
-    public function update(OrderRequest $request, Order $order)
+    public function update(OrderRequest $request,$id)
     {
-        $order->update($request->validated());
-        return response()->json($order);
+        $order = Order::findOrFail($id);
+        $order->update($request->all());
+        return $order;
     }
 
-    public function destroy(Order $order)
+    public function destroy($id)
     {
-        $order->delete();
-        return response()->json(null, 204);
+        return Order::destroy($id);
     }
 }

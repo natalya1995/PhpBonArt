@@ -15,10 +15,10 @@ class JewerlyRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'img' => 'required|url',
+            'img' => 'required|string',
             'description' => 'required|string',
             'estimate' => 'required|numeric',
-            'location_id' => 'required|exists:locations,id',
+            'location_id' => 'nullable|exists:locations,id',
         ];
     }
 }

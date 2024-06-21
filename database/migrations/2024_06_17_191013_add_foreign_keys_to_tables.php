@@ -45,7 +45,7 @@ class AddForeignKeysToTables extends Migration
         });
 
         // Jewerly table
-        Schema::table('jewerly', function (Blueprint $table) {
+        Schema::table('jewerlies', function (Blueprint $table) {
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('set null');
         });
 
@@ -127,7 +127,7 @@ class AddForeignKeysToTables extends Migration
         });
 
         // Jewerly table
-        Schema::table('jewerly', function (Blueprint $table) {
+        Schema::table('jewerlies', function (Blueprint $table) {
             $table->dropForeign(['location_id']);
         });
 

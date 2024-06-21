@@ -10,30 +10,31 @@ class JewerlyController extends Controller
 {
     public function index()
     {
-        $jewerlies = Jewerly::all();
-        return response()->json($jewerlies);
+        
+        return Jewerly::all();
     }
 
     public function store(JewerlyRequest $request)
     {
-        $jewerly = Jewerly::create($request->validated());
+        $validatedData = $request->validated();
+        $jewerly=Jewerly::create($validatedData);
         return response()->json($jewerly, 201);
     }
 
-    public function show(Jewerly $jewerly)
+    public function show($id)
     {
-        return response()->json($jewerly);
+        return Jewerly::findOrFail($id);
     }
 
-    public function update(JewerlyRequest $request, Jewerly $jewerly)
+    public function update(JewerlyRequest $request,$id)
     {
-        $jewerly->update($request->validated());
-        return response()->json($jewerly);
+        $jewerly = Jewerly::findOrFail($id);
+        $jewerly->update($request->all());
+        return $jewerly;
     }
 
-    public function destroy(Jewerly $jewerly)
+    public function destroy($id)
     {
-        $jewerly->delete();
-        return response()->json(null, 204);
+        return Jewerly::destroy($id);
     }
 }
