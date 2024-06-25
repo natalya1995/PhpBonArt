@@ -2,20 +2,20 @@ version: '3.8'
 
 services:
   php:
-    build: .
+    build: ./backend
     ports:
       - "9000:9000"
     volumes:
-      - .:/var/www
+      - ./backend:/var/www
 
   nginx:
     image: nginx:latest
     ports:
       - "8080:80"
     volumes:
-      - .:/var/www
-      - .docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - .docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./backend:/var/www
+      - ./.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - php
 
@@ -39,6 +39,7 @@ services:
       PGADMIN_DEFAULT_PASSWORD: tulidu140895@
     depends_on:
       - db
+
   react:
     build:
       context: ./frontend
