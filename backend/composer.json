@@ -2,20 +2,24 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.3.7.",
+        "filament/filament": "^3.2",
+        "filament/forms": "*",
+        "filament/tables": "^3.2",
         "guzzlehttp/guzzle": "^7.2",
-       "laravel/framework": "^11.0",
         "illuminate/support": "^9.21|^10.0|^11.0",
+        "laravel/framework": "^11.0",
         "laravel/passport": "^12.2",
-        "fruitcake/laravel-cors": "^2.2",
         "laravel/reverb": "@beta",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "laravel/ui": "^4.5"
-       
     },
     "require-dev": {
         "driftingly/rector-laravel": "^1.0",
@@ -43,7 +47,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
