@@ -1,0 +1,49 @@
+.picture-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .picture-detail-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .picture-detail-info {
+    max-width: 800px;
+    text-align: center;
+  }
+  
+  .picture-detail-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .picture-detail-description {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+  
+  .picture-detail-estimate {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .picture-detail-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .picture-detail-link:hover {
+    background-color: #218838;
+  }
+  
