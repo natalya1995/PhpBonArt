@@ -4,6 +4,7 @@ import Home from './Home';
 import About from './About';
 import Pictures from './Pictures';
 import Genres from './Genres';
+import Creators from './Creators';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
@@ -35,6 +36,9 @@ const App = () => {
               <li className="nav-item">
                 <Link className="nav-link" to="/book">Книги</Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/creators">Художники</Link>
+              </li>
             </ul>
     </div>
   </div>
@@ -48,6 +52,7 @@ const App = () => {
             <Route path="/pictures" element={<Pictures />} />
             <Route path="/genres" element={<Genres />} />
             <Route path="/pictures/:id" element={<PictureDetail />} />
+            <Route path="/creators" element={<Creators />} />
           </Routes>
         </div>
 

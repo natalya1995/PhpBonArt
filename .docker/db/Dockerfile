@@ -1,3 +1,7 @@
-FROM postgres:16
+FROM postgres:latest
 
-RUN 'chown -R 1000:1000 /var/lib/postgresql/data'
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["postgres"]

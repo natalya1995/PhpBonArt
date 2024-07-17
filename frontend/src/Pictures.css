@@ -1,8 +1,10 @@
 .auction-pictures {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+  gap: 4px;
+  flex-direction: row;
+  margin: 35px;
+  justify-content: space-evenly;
 }
 
 .auction-picture {
@@ -48,7 +50,7 @@
 .auction-picture-link {
   display: inline-block;
   padding: 8px 16px;
-  background-color: #28a745;
+  background-color: rgba(12, 14, 61, 0.614);
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
@@ -56,5 +58,5 @@
 }
 
 .auction-picture-link:hover {
-  background-color: #218838;
+  background-color:  rgba(6, 6, 24, 0.882);
 }
