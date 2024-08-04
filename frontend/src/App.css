@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&display=swap');
+.content{
+    color:black;
+    font-family: "Alumni Sans Pinstripe", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    font-size:20px !important;
+    background-image: url(file:///C:/Users/natam/Downloads/sd.png);
+}
+.footer{
+    background-color:#021c2f;
+    height: 120px;
+    text-align: center;
+    color: white;
+    font-family: "Alumni Sans Pinstripe", sans-serif;
+}
+.ml-auto{
+    margin: 10px;
+}
+.btn btn-outline-danger{
+    margin-inline-end: 10px;
+}
+img, svg {
+    vertical-align: middle;
+    width: 250px;
+}

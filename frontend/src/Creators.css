@@ -1,34 +1,33 @@
-/* Creators.css */
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&display=swap');
 .auction-creators {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .creator-item {
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
-  
-  .creator-title {
-    font-size: 1.5em;
-    margin: 0 0 10px;
-  }
-  
-  .creator-info {
-    font-size: 1em;
-    color: #666;
-  }
-  
-  /* CreatorDetail.css */
-  .creator-detail {
-    padding: 20px;
-  }
-  
-  .creator-detail h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.creator-item {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  width: 250px;
+  text-align: center;
+}
+
+.creator-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.creator-title {
+  font-size:20px !important;
+  margin: 10px 0;
+}
+.creator-title:hover{
+  color:chartreuse;
+}
+.creator-info {
+  font-size:20px !important;
+  color: #000000;
+}

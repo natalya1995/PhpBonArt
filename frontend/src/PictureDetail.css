@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&display=swap');
 .picture-detail {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    font-family: "Alumni Sans Pinstripe", sans-serif;
   }
   
   .picture-detail-img {
@@ -23,12 +25,12 @@
   }
   
   .picture-detail-description {
-    font-size: 1.2em;
+    font-size:20px !important;
     margin-bottom: 20px;
   }
   
   .picture-detail-estimate {
-    font-size: 1.5em;
+    font-size:20px !important;
     font-weight: bold;
     margin-bottom: 20px;
   }
@@ -45,5 +47,22 @@
   
   .picture-detail-link:hover {
     background-color: #218838;
+  }
+  .d-flex {
+    display: flex;
+  }
+  
+  .justify-content-center {
+    justify-content: center;
+  }
+  
+  .align-items-center {
+    align-items: center;
+  }
+  
+  .spinner-border {
+    width: 3rem;
+    height: 3rem;
+    border-width: 0.3em;
   }
   

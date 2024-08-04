@@ -15,8 +15,14 @@ const Pictures = () => {
         console.error('Error fetching pictures:', error);
       });
   }, []);
-  if (!pictures) {
-    return <div>Loading...</div>;
+  if (pictures.length === 0) {
+    return (
+      <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Загрузка...</span>
+        </div>
+      </div>
+    );
   }
   return (
     <div className="auction-pictures">

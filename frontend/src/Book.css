@@ -1,0 +1,142 @@
+.auction-books {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    flex-direction: row;
+    margin: 35px;
+    justify-content: space-evenly;
+  }
+  
+  .auction-book {
+    position: relative;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .auction-book:hover {
+    transform: translateY(-5px);
+  }
+  
+  .auction-book-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .auction-book-info {
+    padding: 15px;
+    background-color: #fff;
+  }
+  
+  .auction-book-title {
+    font-size:20px !important;
+    margin-bottom: 10px;
+  }
+  
+  .auction-book-description {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  a.auction-books {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    flex-direction: row;
+    margin: 35px;
+    justify-content: space-evenly;
+  }
+  
+  .auction-book {
+    position: relative;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .auction-book:hover {
+    transform: translateY(-5px);
+  }
+  
+  .auction-book-img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .auction-book-info {
+    padding: 15px;
+    background-color: #fff;
+  }
+  
+  .auction-book-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .auction-book-description {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .auction-book-estimate {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .auction-book-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: rgba(12, 14, 61, 0.614);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .auction-book-link:hover {
+    background-color: rgba(6, 6, 24, 0.882);
+  }
+  
+  .auction-book-estimate {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .auction-book-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: rgba(12, 14, 61, 0.614);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .auction-book-link:hover {
+    background-color: rgba(6, 6, 24, 0.882);
+  }
+.d-flex {
+    display: flex;
+  }
+  
+  .justify-content-center {
+    justify-content: center;
+  }
+  
+  .align-items-center {
+    align-items: center;
+  }
+  
+  .spinner-border {
+    width: 3rem;
+    height: 3rem;
+    border-width: 0.3em;
+  }
+  

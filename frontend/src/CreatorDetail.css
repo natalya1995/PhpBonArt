@@ -1,0 +1,40 @@
+.creator-detail {
+    padding: 20px;
+  }
+  
+  .creator-detail h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .paintings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .painting-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width: 200px;
+    text-align: center;
+  }
+  
+  .painting-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .painting-title {
+    font-size: 1.2em;
+    margin: 10px 0;
+  }
+  
+  .painting-description {
+    font-size: 0.9em;
+    color: #666;
+  }
+  
