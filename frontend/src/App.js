@@ -1,22 +1,30 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Home from './Home';
+import CreatorDetail from './CreatorDetail';
 import About from './About';
 import Pictures from './Pictures';
 import Genres from './Genres';
 import Creators from './Creators';
 import Register from './Register';
+import Cart from './Cart';
+import Checkout from './Checkout';
 import Login from './Login';
 import MainPage from './MainPage';
 import Book from './Book';
 import './Book.css';
+import Jewerly from './Jewerly';
+import './Jewerly.css';
+import './About.css';
 import './App.css';
 import './Login.css';
 import './Register.css';
+import './CreatorDetail.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import PictureDetail from './PictureDetail';
+
 import { AuthProvider, AuthContext } from './AuthContext';
 
 const CustomNavbar = () => {
@@ -25,7 +33,7 @@ const CustomNavbar = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-      <Navbar.Brand href="/">
+        <Navbar.Brand href="/">
           <img src='https://bonart.kz/wp-content/uploads/2019/01/madrid-kiev-almaty.png' alt="BonArt" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -48,6 +56,9 @@ const CustomNavbar = () => {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/creators">Художники</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/cart">Корзина</Link>
             </li>
           </ul>
           {user ? (
@@ -73,8 +84,8 @@ const CustomNavbar = () => {
 
 const App = () => {
   return (
-    <AuthProvider>
-      <Router>
+    <Router>
+      <AuthProvider>
         <CustomNavbar />
         <div className="content">
           <Routes>
@@ -88,13 +99,17 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/main" element={<MainPage />} />
             <Route path="/book" element={<Book />} />
+            <Route path="/creators/:id" element={<CreatorDetail />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/jewerly" element={<Jewerly/>} /> 
           </Routes>
         </div>
         <div className="footer">
           <p>&copy; 2024 Бон Арт. Все права защищены.</p>
         </div>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </Router>
   );
 };
 

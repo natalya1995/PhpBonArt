@@ -1,13 +1,8 @@
 <?php
 
-// app/Models/AdminUser.php
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class AdminUser extends Model
+class AdminUser extends Authenticatable
 {
     use HasFactory;
 
@@ -30,3 +25,4 @@ class AdminUser extends Model
         'is_admin' => 'boolean',
     ];
 }
+

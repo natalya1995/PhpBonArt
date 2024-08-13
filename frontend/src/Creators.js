@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './Creators.css'; // Убедитесь, что путь правильный
-
+import './Creators.css'; 
 const Creators = () => {
   const [creators, setCreators] = useState([]);
 
   useEffect(() => {
     axios.get('http://backend:8080/api/creators')
       .then(response => {
-        console.log('Response data:', response.data); // Отладка ответа
-        setCreators(response.data); // Предполагается, что response.data это массив creators
+        console.log('Response data:', response.data);
+        setCreators(response.data); 
       })
       .catch(error => {
         console.error('Error fetching creators:', error);
       });
   }, []);
   if (creators.length === 0) {
-    return <div>Loading...</div>;
+    return (
+      <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Загрузка...</span>
+        </div>
+      </div>
+    );
   }
 
   return (

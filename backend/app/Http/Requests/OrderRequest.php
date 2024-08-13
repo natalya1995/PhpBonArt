@@ -14,10 +14,13 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'nullable|exists:users,id',
-            'status_order' => 'nullable|string|max:255',
-            'sum' => 'required|numeric',
-         
+            'items' => 'required|array',
+            'items.*.picture_id' => 'required|integer|exists:pictures,id',
+            'items.*.price' => 'required|numeric',
+            'status_order' => 'required|string|in:В ожидании,оплачен,canceled',
+            'address' => 'required|string|max:255',
+            'paymentMethod' => 'required|string|in:credit_card,paypal',
         ];
     }
+    
 }

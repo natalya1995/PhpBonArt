@@ -1,42 +1,40 @@
 <?php
-
 namespace App\Http\Controllers;
+
 use App\Models\Auction;
-use Illuminate\Http\Request;
 use App\Http\Requests\CreateAuctionRequest;
+use Illuminate\Http\Request;
 
 class AuctionController extends Controller
 {
-  
     public function index()
     {
-        return Auction::all();
+        $auctions = Auction::with('items')->get();
+        return response()->json($auctions);
     }
 
-  
     public function store(CreateAuctionRequest $request)
     {
-        $validatedData = $request->validated();
-        $auction=Auction::create('validatedData');
+        $auction = Auction::create($request->validated());
         return response()->json($auction, 201);
     }
 
-
-    public function show( $id)
+    public function show($id)
     {
-        return Auction::findOrFail($id);
+        $auction = Auction::with('items.bids')->findOrFail($id);
+        return response()->json($auction);
     }
 
- 
     public function update(Request $request, $id)
     {
         $auction = Auction::findOrFail($id);
         $auction->update($request->all());
-        return $auction;
+        return response()->json($auction);
     }
 
     public function destroy($id)
-    {    $auction->delete();
-        return response(null,204);
+    {
+        Auction::destroy($id);
+        return response()->json(null, 204);
     }
 }

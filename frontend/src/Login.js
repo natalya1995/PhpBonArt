@@ -27,7 +27,12 @@ const Login = () => {
       }
 
       const data = await response.json();
-      login(data.user);
+
+      localStorage.setItem('token', data.token);
+
+
+      login(data.user, data.token);
+
       navigate('/');
     } catch (error) {
       setMessage(error.message || 'Login failed');
@@ -38,32 +43,33 @@ const Login = () => {
     <div className="container">
       <h2>Войти</h2>
       <div className='logIn'>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Email</label>
-          <input
-            type="email"
-            className="form-control"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          
-        </div>
-        <div className="form-group">
-          <label>Пароль</label>
-          <input
-            type="password"
-            className="form-control"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">Войти</button>
-      </form>
-      {message && <p className="mt-3" style={{ color: 'green' }}>{message}</p>}
-    </div>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              className="form-control"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Пароль</label>
+            <input
+              type="password"
+              className="form-control"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">Войти</button>
+          <a href='/register'><p>У меня еще нет аккаунта</p></a>
+        </form>
+       
+        {message && <p className="mt-3" style={{ color: 'green' }}>{message}</p>}
+      </div>
     </div>
   );
 };

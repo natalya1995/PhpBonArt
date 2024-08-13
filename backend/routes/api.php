@@ -18,6 +18,15 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\PictureJanreController;
 use App\Http\Controllers\SectorController;
+use App\Http\Controllers\EmailController;
+use App\Http\Controllers\ItemController;
+
+
+Route::options('/{any}', function () {
+    return response()->json([], 200);
+})->where('any', '.*');
+Route::post('/send-email', [EmailController::class, 'sendEmail']);
+
 
 //PICTURES
 Route::get('/pictures', [PictureController::class, 'index']);
@@ -60,19 +69,18 @@ Route::delete('/books/{book}', [BookController::class, 'destroy']);
 
 
 //AUCTION
+Route::resource('items', ItemController::class);
 Route::get('/auctions', [AuctionController::class, 'index']);
 Route::post('/auctions', [AuctionController::class, 'store']);
 Route::get('/auctions/{auction}', [AuctionController::class, 'show']);
 Route::put('/auctions/{auction}', [AuctionController::class, 'update']);
-Route::delete('/auctions/{auction}', [AuctionController::class, 'destroy']); 
-
+Route::delete('/auctions/{auction}', [AuctionController::class, 'destroy']);
 //BID
 Route::get('/bids', [BidController::class, 'index']);
 Route::post('/bids', [BidController::class, 'store']);
 Route::get('/bids/{bid}', [BidController::class, 'show']);
 Route::put('/bids/{bid}', [BidController::class, 'update']);
-Route::delete('/bids/{bid}', [BidController::class, 'destroy']); 
-
+Route::delete('/bids/{bid}', [BidController::class, 'destroy']);
 //COMITTENT
 Route::get('/comittents', [ComittentController::class, 'index']);
 Route::post('/comittents', [ComittentController::class, 'store']);
@@ -94,12 +102,24 @@ Route::get('/locations/{location}', [LocationController::class, 'show']);
 Route::put('/locations/{location}', [LocationController::class, 'update']);
 Route::delete('/locations/{location}', [LocationController::class, 'destroy']); 
 
-//ORDER
-Route::get('/orders', [OrderController::class, 'index']);
-Route::post('/orders', [OrderController::class, 'store']);
-Route::get('/orders/{order}', [OrderController::class, 'show']);
-Route::put('/orders/{order}', [OrderController::class, 'update']);
-Route::delete('/orders/{order}', [OrderController::class, 'destroy']); 
+
+// Orders
+Route::get('/orders', [OrderController::class, 'index'])->middleware('auth:sanctum');
+Route::post('/orders', [OrderController::class, 'store'])->middleware('auth:sanctum');
+Route::get('/orders/{id}', [OrderController::class, 'show'])->middleware('auth:sanctum');
+// Route::put('/orders/{id}', [OrderController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->middleware('auth:sanctum');
+Route::put('/orders/pay', [OrderController::class, 'payOrder'])->middleware('auth:sanctum');
+
+
+// Cart
+Route::post('/cart/add', [OrderController::class, 'addToCart'])->middleware('auth:sanctum');
+Route::get('/cart', [OrderController::class, 'getCart'])->middleware('auth:sanctum');
+Route::delete('/cart/{id}', [OrderController::class, 'removeFromCart'])->middleware('auth:sanctum');
+
+// Checkout
+Route::post('/checkout', [OrderController::class, 'checkout'])->middleware('auth:sanctum');
+
 
 //ORDERDETAIL
 Route::get('/order-details', [OrderDetailController::class, 'index']);

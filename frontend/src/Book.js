@@ -37,7 +37,7 @@ const Book = () => {
             <h4 className="auction-book-title">{book.title}</h4>
             <p className="auction-book-description">{book.description}</p>
             <p className="auction-book-estimate">${book.estimate}</p>
-            <a className="btn btn-success auction-book-link" href={book.link}>Add to cart</a>
+            <a className="btn btn-success auction-book-link" href={book.link}>В корзину</a>
           </div>
         </div>
       ))}

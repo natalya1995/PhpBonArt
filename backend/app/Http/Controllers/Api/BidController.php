@@ -1,43 +1,40 @@
 <?php
+namespace App\Http\Controllers;
 
-namespace App\Http\Controllers\Api;
-
-use App\Http\Controllers\Controller;
 use App\Models\Bid;
-use Illuminate\Http\Request;
 use App\Http\Requests\CreateBidRequest;
+use Illuminate\Http\Request;
 
 class BidController extends Controller
 {
-   
     public function index()
     {
-        return Bid::all();
+        $bids = Bid::with('auction', 'item', 'user')->get();
+        return response()->json($bids);
     }
 
     public function store(CreateBidRequest $request)
     {
-  
-        $validatedData = $request->validated();
-        $bid=Bid::create('validatedData');
+        $bid = Bid::create($request->validated());
         return response()->json($bid, 201);
     }
 
     public function show($id)
     {
-        return Bid::findOrFail($id);
+        $bid = Bid::with('auction', 'item', 'user')->findOrFail($id);
+        return response()->json($bid);
     }
 
     public function update(Request $request, $id)
     {
         $bid = Bid::findOrFail($id);
         $bid->update($request->all());
-        return $bid;
+        return response()->json($bid);
     }
+
     public function destroy($id)
     {
-        $bid = Bid::findOrFail($id);
-        $bid->delete();
-        return response(null,204);
+        Bid::destroy($id);
+        return response()->json(null, 204);
     }
 }

@@ -32,13 +32,13 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!validateForm()) {
       return;
     }
-
+  
     const { confirmPassword, ...dataToSubmit } = formData;
-
+  
     try {
       const response = await fetch('http://backend:8080/api/register', {
         method: 'POST',
@@ -47,22 +47,28 @@ const Register = () => {
         },
         body: JSON.stringify(dataToSubmit),
       });
-
+  
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
-      const result = await response.json();
+  
+      const text = await response.text(); 
+      console.log('Server response:', text);
+  
+      const result = JSON.parse(text); 
       console.log(result);
+  
 
-      setMessage('Вы успешно зарегистрировались!Авторизируйтесь.');
-      navigate('/login', { state: { message: 'Вы успешно зарегистрировались!Авторизируйтесь.' } });
+      localStorage.setItem('token', result.token);
+  
+      setMessage('Вы успешно зарегистрировались! Авторизируйтесь.');
+      navigate('/');
     } catch (error) {
       console.error('Error:', error);
       setMessage('Регистрация не успешна, попробуте сеова.');
     }
   };
-
+  
   return (
     <div className="container">
       <h2>Регистрация</h2>

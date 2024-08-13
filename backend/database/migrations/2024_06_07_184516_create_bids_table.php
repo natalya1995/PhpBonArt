@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,11 +12,12 @@ return new class extends Migration
     {
         Schema::create('bids', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->integer('auction_id')->nullable(true);
-            $table->integer('user_id')->nullable(true);
-            $table->integer('bin_amount')->nullable(true);
+            $table->foreignId('auction_id')->constrained('auctions')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('item_id')->nullable()->constrained('items')->onDelete('set null');
+            $table->decimal('bin_amount', 10, 2)->nullable();
             $table->datetime('bin_time');
+            $table->timestamps();
         });
     }
 

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
@@ -19,10 +18,12 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
-        return response()->json(['message' => 'User registered successfully', 'user' => $user], 201);
+    
+        $token = $user->createToken('token-name')->plainTextToken;
+    
+        return response()->json(['user' => $user, 'token' => $token], 201);
     }
-
+    
     public function login(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
@@ -34,8 +35,9 @@ class AuthController extends Controller
         }
 
         $user = Auth::user();
+        $token = $user->createToken('token-name')->plainTextToken;
 
-        return response()->json(['message' => 'Login successful', 'user' => $user], 200);
+        return response()->json(['message' => 'Login successful', 'user' => $user, 'token' => $token], 200);
     }
 
     public function logout()

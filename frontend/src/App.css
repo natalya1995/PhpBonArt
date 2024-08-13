@@ -1,18 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,600;1,600&display=swap');
 .content{
     color:black;
-    font-family: "Alumni Sans Pinstripe", sans-serif;
+    font-family: "EB Garamond", serif;
     font-weight: 800;
     font-style: normal;
     font-size:20px !important;
     background-image: url(file:///C:/Users/natam/Downloads/sd.png);
 }
 .footer{
-    background-color:#021c2f;
-    height: 120px;
+    background-color:#191919cf;
+    height: 80px;
     text-align: center;
     color: white;
-    font-family: "Alumni Sans Pinstripe", sans-serif;
+    font-family: "EB Garamond", serif;
+    
 }
 .ml-auto{
     margin: 10px;
@@ -23,4 +24,18 @@
 img, svg {
     vertical-align: middle;
     width: 250px;
+
+
+}
+.IMG{
+    width: -webkit-fill-available;
+}
+.container{
+max-width: 100%;
+flex-wrap: nowrap;
+display: flex;
+flex-wrap: inherit;
+align-items: center;
+justify-content: space-between;
+flex-direction: column;
 }

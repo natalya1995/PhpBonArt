@@ -167,5 +167,19 @@ class AddForeignKeysToTables extends Migration
             $table->dropForeign(['picture_id']);
             $table->dropForeign(['creator_id']);
         });
+  
+     
+      
+        Schema::table('bids', function (Blueprint $table) {
+            if (!Schema::hasColumn('bids', 'auction_id')) {
+                $table->foreign('auction_id')->references('id')->on('auctions')->onDelete('set null');
+            }
+
+            if (!Schema::hasColumn('bids', 'user_id')) {
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            }
+        });
+
     }
+   
 }

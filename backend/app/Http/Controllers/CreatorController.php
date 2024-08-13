@@ -23,7 +23,11 @@ class CreatorController extends Controller
 
     public function show($id)
     {
-        return Creator::findOrFail($id);
+        $creator = Creator::with('pictures')->findOrFail($id);
+        return response()->json([
+            'creator' => $creator,
+            'paintings' => $creator->pictures,
+        ]);
     }
 
     public function update(Request $request, $id)
