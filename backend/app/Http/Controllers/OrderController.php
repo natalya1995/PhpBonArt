@@ -136,18 +136,27 @@ public function payOrder(Request $request)
     try {
         $user = $request->user();
         
- 
+       
         $order = Order::where('user_id', $user->id)
             ->where('status_order', false)
+            ->with('orderDetails.picture')
             ->first();
         
         if (!$order) {
             return response()->json(['message' => 'No pending order found'], 404);
         }
 
-
         $order->status_order = true;
         $order->save();
+
+        
+        $soldLocationId = \App\Models\Location::where('name', 'Продана')->first()->id;
+
+        foreach ($order->orderDetails as $orderDetail) {
+            $picture = $orderDetail->picture;
+            $picture->location_id = $soldLocationId;
+            $picture->save();
+        }
 
         return response()->json(['message' => 'Order paid successfully'], 200);
     } catch (\Exception $e) {
@@ -155,6 +164,7 @@ public function payOrder(Request $request)
         return response()->json(['error' => 'Internal Server Error'], 500);
     }
 }
+
 
     
 }

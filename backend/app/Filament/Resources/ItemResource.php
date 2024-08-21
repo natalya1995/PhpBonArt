@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources;
 
-
 use App\Models\Item;
 use Filament\Forms;
 use Filament\Resources\Resource;
@@ -14,12 +13,12 @@ use App\Filament\Resources\ItemResource\Pages;
 class ItemResource extends Resource
 {
     protected static ?string $model = Item::class;
-
+ protected static ?string $navigationIcon ='heroicon-c-arrow-down-on-square';
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
+                Forms\Components\TextInput::make('name')
                     ->required(),
                 Forms\Components\Textarea::make('description')
                     ->nullable(),
@@ -33,8 +32,20 @@ class ItemResource extends Resource
                     ->relationship('auction', 'name')
                     ->required(),
                 Forms\Components\Select::make('winning_bid_id')
-                    ->relationship('winningBid', 'amount')
+                    ->relationship('winningBid', 'bin_amount')
                     ->nullable(),
+                Forms\Components\Select::make('picture_id')
+                    ->relationship('picture', 'title')
+                    ->nullable()
+                    ->label('Picture'),
+                Forms\Components\Select::make('book_id')
+                    ->relationship('book', 'title')
+                    ->nullable()
+                    ->label('Book'),
+                Forms\Components\Select::make('jewerly_id')
+                    ->relationship('jewerly', 'title')
+                    ->nullable()
+                    ->label('Jewelry'),
             ]);
     }
 
@@ -42,7 +53,7 @@ class ItemResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
+                Tables\Columns\TextColumn::make('name')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('starting_price')
@@ -54,7 +65,7 @@ class ItemResource extends Resource
                 Tables\Columns\TextColumn::make('auction.name')
                     ->label('Auction')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('winningBid.amount')
+                Tables\Columns\TextColumn::make('winningBid.bin_amount')
                     ->label('Winning Bid')
                     ->money('usd'),
             ])

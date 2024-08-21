@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filament\Resources;
 
 use App\Models\Bid;
@@ -14,20 +13,25 @@ class BidResource extends Resource
 {
     protected static ?string $model = Bid::class;
 
+    protected static ?string $navigationIcon = 'heroicon-c-currency-dollar';
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\Select::make('item_id')
-                    ->relationship('item', 'title')
+                    ->relationship('item', 'name')
+                    ->required(),
+                Forms\Components\Select::make('auction_id')
+                    ->relationship('auction', 'name')
                     ->required(),
                 Forms\Components\Select::make('user_id')
                     ->relationship('user', 'name')
                     ->required(),
-                Forms\Components\TextInput::make('amount')
+                Forms\Components\TextInput::make('bin_amount') 
                     ->required()
                     ->numeric(),
-                Forms\Components\DateTimePicker::make('bid_time')
+                Forms\Components\DateTimePicker::make('bin_time') 
                     ->required(),
             ]);
     }
@@ -36,16 +40,19 @@ class BidResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('item.title')
+                Tables\Columns\TextColumn::make('item.name')
                     ->label('Item')
                     ->sortable(),
+                Tables\Columns\TextColumn::make('auction.name')
+                    ->label('Auction')
+                    ->sortable(),    
                 Tables\Columns\TextColumn::make('user.name')
                     ->label('User')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('amount')
+                Tables\Columns\TextColumn::make('bin_amount') 
                     ->sortable()
                     ->money('usd'),
-                Tables\Columns\TextColumn::make('bid_time')
+                Tables\Columns\TextColumn::make('bin_time') 
                     ->dateTime(),
             ])
             ->filters([
@@ -66,6 +73,7 @@ class BidResource extends Resource
             // Add relations if necessary
         ];
     }
+
     public static function getPages(): array
     {
         return [

@@ -1,64 +1,68 @@
 .auction-pictures {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
-  flex-direction: row;
-  margin: 35px;
-  justify-content: space-evenly;
+  gap: 20px;
 }
 
 .auction-picture {
-  position: relative;
-  width: 300px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ddd;
   border-radius: 5px;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-.auction-picture:hover {
-  transform: translateY(-5px);
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
 .auction-picture-img {
   width: 100%;
   height: auto;
-  display: block;
+  max-width: 250px;
+  border-radius: 5px;
 }
 
 .auction-picture-info {
-  padding: 15px;
-  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin-top: 10px;
 }
 
 .auction-picture-title {
-  font-size: 18px;
+  font-size: 1.2em;
   margin-bottom: 10px;
 }
 
 .auction-picture-description {
-  font-size: 14px;
+  font-size: 0.9em;
   margin-bottom: 10px;
 }
 
 .auction-picture-estimate {
-  font-size: 16px;
+  font-size: 1.1em;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .auction-picture-link {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: rgba(12, 14, 61, 0.614);
-  color: #fff;
-  text-decoration: none;
+  margin-top: auto; /* Ensure the button is pushed to the bottom */
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  background-color: #28a745;
+  color: white;
+  border: none;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
 .auction-picture-link:hover {
-  background-color:  rgba(6, 6, 24, 0.882);
+  background-color: #218838;
 }
 .d-flex {
   display: flex;

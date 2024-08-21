@@ -9,8 +9,8 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\CreatorController;
 use App\Http\Controllers\JanreController;
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\Api\BidController;
-use App\Http\Controllers\Api\AuctionController;
+use App\Http\Controllers\BidController;
+use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\ComittentController;
 use App\Http\Controllers\JewerlyController;
 use App\Http\Controllers\LocationController;
@@ -20,13 +20,15 @@ use App\Http\Controllers\PictureJanreController;
 use App\Http\Controllers\SectorController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\NotificationController;
+
 
 
 Route::options('/{any}', function () {
     return response()->json([], 200);
 })->where('any', '.*');
-Route::post('/send-email', [EmailController::class, 'sendEmail']);
-
+//Route::post('/send-email', [EmailController::class, 'sendEmail']);
+Route::post('/notifications', [NotificationController::class, 'store']);
 
 //PICTURES
 Route::get('/pictures', [PictureController::class, 'index']);
@@ -69,18 +71,24 @@ Route::delete('/books/{book}', [BookController::class, 'destroy']);
 
 
 //AUCTION
-Route::resource('items', ItemController::class);
+Route::post('/items/create', [ItemController::class, 'store']);
 Route::get('/auctions', [AuctionController::class, 'index']);
 Route::post('/auctions', [AuctionController::class, 'store']);
 Route::get('/auctions/{auction}', [AuctionController::class, 'show']);
 Route::put('/auctions/{auction}', [AuctionController::class, 'update']);
 Route::delete('/auctions/{auction}', [AuctionController::class, 'destroy']);
+Route::post('/auctions/{auctionId}/complete', [AuctionController::class, 'completeAuction'])->name('auctions.complete');
+
+
+
 //BID
 Route::get('/bids', [BidController::class, 'index']);
 Route::post('/bids', [BidController::class, 'store']);
 Route::get('/bids/{bid}', [BidController::class, 'show']);
 Route::put('/bids/{bid}', [BidController::class, 'update']);
 Route::delete('/bids/{bid}', [BidController::class, 'destroy']);
+Route::middleware('auth:sanctum')->get('/user-bids', [BidController::class, 'getUserBids']);
+
 //COMITTENT
 Route::get('/comittents', [ComittentController::class, 'index']);
 Route::post('/comittents', [ComittentController::class, 'store']);

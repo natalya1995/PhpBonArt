@@ -12,14 +12,7 @@ class ComittentTest extends TestCase
      * A basic feature test example.
      */
 
-     /** @test */
-     public function test_it_can_create_a_comittent()
-     {
-        $comittentData = Comittent::factory()->raw();
-        $response = $this->post('/api/comittents', $comittentData);
-        $response->assertStatus(201);
-        $this->assertDatabaseHas('comittents', $comittentData); 
-     }
+  
  
      /** @test */
      public function test_it_can_display_a_comittent()

@@ -29,18 +29,27 @@ class PictureResource extends Resource
                 Forms\Components\TextInput::make('img')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('creator_id')
-                    ->numeric(),
+                Forms\Components\Select::make('creator_id')
+                    ->label('Creator')
+                    ->relationship('creator', 'name')
+                    ->searchable()
+                    ->required(),
                 Forms\Components\TextInput::make('size')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('description')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('janre_id')
-                    ->numeric(),
-                Forms\Components\TextInput::make('location_id')
-                    ->numeric(),
+                Forms\Components\Select::make('janre_id')
+                    ->label('Janre')
+                    ->relationship('janre', 'name')
+                    ->searchable()
+                    ->required(),
+                    Forms\Components\Select::make('location_id')
+                    ->label('Location')
+                    ->relationship('location', 'name')
+                    ->searchable()
+                    ->required(),
                 Forms\Components\TextInput::make('sector_id')
                     ->numeric(),
                 Forms\Components\TextInput::make('comittent_id')
@@ -67,19 +76,22 @@ class PictureResource extends Resource
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('img')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('creator_id')
-                    ->numeric()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('creator.name')
+                    ->label('Creator')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('size')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('janre_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('location_id')
-                    ->numeric()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('janre.name')
+                    ->label('Janre')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('location.name')
+                    ->label('Location')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('sector_id')
                     ->numeric()
                     ->sortable(),

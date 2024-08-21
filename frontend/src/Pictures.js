@@ -25,7 +25,7 @@ const Pictures = () => {
         console.error('Error fetching pictures:', error);
         setModalMessage('Ошибка при загрузке картин. Пожалуйста, попробуйте снова.');
         setShowModal(true);
-        setLoadingPictures(false); // Ошибка загрузки, остановка спиннера
+        setLoadingPictures(false); 
       });
 
     const token = localStorage.getItem('token');
@@ -38,16 +38,16 @@ const Pictures = () => {
       })
       .then(response => {
         setCartItems(response.data); 
-        setLoadingCart(false); // Загрузка завершена
+        setLoadingCart(false); 
       })
       .catch(error => {
         console.error('Error fetching cart items:', error);
         setModalMessage('Ошибка при загрузке корзины. Пожалуйста, попробуйте снова.');
         setShowModal(true);
-        setLoadingCart(false); // Ошибка загрузки, остановка спиннера
+        setLoadingCart(false); 
       });
     } else {
-      setLoadingCart(false); // Нет токена, остановка спиннера
+      setLoadingCart(false); 
     }
   }, []);
 
@@ -95,7 +95,7 @@ const Pictures = () => {
     return (
       <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
         <div className="spinner-border" role="status">
-          <span className="sr-only">Загрузка...</span>
+          <span className="sr-only"></span>
         </div>
       </div>
     );
@@ -103,8 +103,8 @@ const Pictures = () => {
 
   return (
     <div className="auction-pictures">
-      {pictures.map(picture => (
-        <div key={picture.id} className="auction-picture">
+      {pictures.map((picture, index) => (
+        <div key={picture.id} className={`auction-picture animate__animated animate__fadeInUp animate__delay-${index % 5}s`}>
           <Link to={`/pictures/${picture.id}`}>
             <img className="auction-picture-img" src={picture.img} alt={picture.title} />
           </Link>
@@ -113,7 +113,7 @@ const Pictures = () => {
             <p className="auction-picture-description">{picture.description}</p>
             <p className="auction-picture-estimate">${picture.estimate}</p>
             <button 
-              className="btn btn-success auction-picture-link"
+              className="btn btn-success auction-picture-link animate__animated animate__bounceIn animate__delay-${index % 5}s"
               onClick={() => handleAddToCart(picture)}
             >
               В корзину

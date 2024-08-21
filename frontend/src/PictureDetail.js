@@ -21,7 +21,7 @@ const PictureDetail = () => {
     return (
       <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
         <div className="spinner-border" role="status">
-          <span className="sr-only">Загрузка...</span>
+          <span className="sr-only"></span>
         </div>
       </div>
     );
@@ -34,7 +34,6 @@ const PictureDetail = () => {
         <h1 className="picture-detail-title">{picture.title}</h1>
         <p className="picture-detail-description">{picture.description}</p>
         <p className="picture-detail-estimate">Эстимейт ${picture.estimate}</p>
-        <a className="btn btn-success picture-detail-link" href={picture.link}>В корзину</a>
       </div>
     </div>
   );

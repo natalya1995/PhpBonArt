@@ -2,13 +2,13 @@ import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthContext';
-import { Spinner } from 'react-bootstrap'; // Импортируем Spinner
+import { Spinner } from 'react-bootstrap'; 
 import './Cart.css';
 
 const Cart = () => {
   const { user } = useContext(AuthContext);
   const [cartItems, setCartItems] = useState([]);
-  const [loading, setLoading] = useState(true); // Состояние загрузки
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,14 +22,14 @@ const Cart = () => {
       })
       .then(response => {
         setCartItems(response.data);
-        setLoading(false); // Остановка загрузки после получения данных
+        setLoading(false); 
       })
       .catch(error => {
         console.error('Error fetching cart items:', error);
         if (error.response && error.response.status === 401) {
           navigate('/login');
         }
-        setLoading(false); // Остановка загрузки даже в случае ошибки
+        setLoading(false); 
       });
     } else {
       navigate('/login');
@@ -61,7 +61,7 @@ const Cart = () => {
       {loading ? ( 
            <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
            <div className="spinner-border" role="status">
-             <span className="sr-only">Загрузка...</span>
+             <span className="sr-only"></span>
            </div>
          </div>
       ) : cartItems.length === 0 ? (

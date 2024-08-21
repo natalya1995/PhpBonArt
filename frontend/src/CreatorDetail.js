@@ -31,7 +31,7 @@ const CreatorDetail = () => {
     return (
       <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
         <div className="spinner-border" role="status">
-          <span className="sr-only">Загрузка...</span>
+          <span className="sr-only"></span>
         </div>
       </div>
     );

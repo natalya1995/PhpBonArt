@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { Modal, Button, Spinner } from 'react-bootstrap';
 import './Checkout.css';
 
 const Checkout = () => {
+  const location = useLocation();
+  const { userId, pictureId } = location.state || {};
   const [cartItems, setCartItems] = useState([]);
   const [orderDetails, setOrderDetails] = useState({
     address: '',
@@ -14,9 +17,11 @@ const Checkout = () => {
   const [loading, setLoading] = useState(false); 
 
   useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    setCartItems(cart);
-  }, []);
+   
+    if (pictureId) {
+      setCartItems([{ id: pictureId, price: 0 }]); 
+    }
+  }, [pictureId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

@@ -9,9 +9,10 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
+    const userId = localStorage.getItem('user_id');
+    if (token&&userId) {
      
-      setUser({ token });
+      setUser({ id: userId, token });
     }
 
     const logoutTimer = setTimeout(() => {
@@ -23,6 +24,7 @@ const AuthProvider = ({ children }) => {
 
   const login = (user, token) => {
     localStorage.setItem('token', token);
+    localStorage.setItem('user_id', user.id); 
     setUser(user);
 
  
@@ -35,14 +37,15 @@ const AuthProvider = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('user_id'); 
     setUser(null);
     navigate('/login');
   };
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
-    </AuthContext.Provider>
+    {children}
+  </AuthContext.Provider>
   );
 };
 

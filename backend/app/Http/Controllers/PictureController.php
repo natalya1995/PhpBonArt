@@ -7,19 +7,27 @@ use Illuminate\Http\Request;
 
 class PictureController extends Controller
 {
-    // Get all pictures
     public function index()
     {
-        return Picture::all();
+      
+        $pictures = Picture::with('location')->get();
+    
+       
+        $filteredPictures = $pictures->filter(function ($picture) {
+            return $picture->location && $picture->location->name != 'Продана';
+        });
+    
+        return $filteredPictures->values();
     }
-
-    // Get a single picture
+    
+    
+ 
     public function show($id)
     {
         return Picture::findOrFail($id);
     }
 
-    // Create a new picture
+   
     public function store(CreatePictresRequest $request)
     {
         $validatedData = $request->validated();
@@ -27,17 +35,22 @@ class PictureController extends Controller
         return response()->json($pictures, 201);
     }
 
-    // Update an existing picture
+ 
     public function update(Request $request, $id)
     {
-        
         $picture = Picture::findOrFail($id);
-        $picture->update($request->all());
+    
+     
+        if ($request->has('location_id')) {
+            $picture->location_id = $request->input('location_id');
+        }
+    
 
+        $picture->update($request->except('location_id'));
+    
         return $picture;
     }
-
-    // Delete a picture
+  
     public function destroy($id)
     {
         return Picture::destroy($id);

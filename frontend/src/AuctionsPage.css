@@ -1,0 +1,20 @@
+.auctions-page {
+    padding: 20px;
+  }
+  
+  .auctions-page h2 {
+    margin-bottom: 20px;
+  }
+  
+  .list-group-item {
+    cursor: pointer;
+  }
+  
+
+  .modal-dialog-centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  

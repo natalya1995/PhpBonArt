@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Location;
@@ -11,15 +10,13 @@ class LocationController extends Controller
     public function index()
     {
         return Location::all();
-        
     }
 
     public function store(LocationRequest $request)
     {  
         $validatedData = $request->validated();
-        $location=Location::create($validatedData);
+        $location = Location::create($validatedData);
         return response()->json($location, 201);
-       
     }
 
     public function show($id)
@@ -27,7 +24,7 @@ class LocationController extends Controller
         return Location::findOrFail($id);
     }
 
-    public function update(LocationRequest $request,$id )
+    public function update(LocationRequest $request, $id)
     {  
         $location = Location::findOrFail($id);
         $location->update($request->all());
@@ -38,4 +35,19 @@ class LocationController extends Controller
     {
         return Location::destroy($id);
     }
+
+   
+    public function updateLocationForPicture(Request $request, $id)
+    {
+        $location = Location::findOrFail($id);
+        
+       
+        $pictures = $location->pictures;
+        foreach ($pictures as $picture) {
+            $picture->update(['location_id' => $location->id]);
+        }
+
+        return response()->json(['message' => 'Location updated for all pictures'], 200);
+    }
 }
+

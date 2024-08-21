@@ -1,0 +1,26 @@
+.user-bids-page {
+    padding: 115px;
+  }
+  
+  .bid-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bid-card h4 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .bid-card p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+  }
+  
+  .bid-card button {
+    margin-top: 10px;
+  }
+  

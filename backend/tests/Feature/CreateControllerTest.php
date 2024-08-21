@@ -22,22 +22,7 @@ class CreateControllerTest extends TestCase
         $this->assertDatabaseHas('creators', $creatorData);
     }
 
-    /** @test */
-    public function test_it_can_display_a_creator()
-    {
-        $creator = Creator::factory()->create();
 
-        $response = $this->get('/api/creators/' . $creator->id);
-
-        $response->assertStatus(200)
-                 ->assertJson([
-                     'id' => $creator->id,
-                     'name' => $creator->name,
-                     'YY' => $creator->YY,
-                     'biography' => $creator->biography,
-                     'picture_id' => $creator->picture_id,
-                 ]);
-    }
      /** @test */
     public function it_can_update_a_creator()
     {

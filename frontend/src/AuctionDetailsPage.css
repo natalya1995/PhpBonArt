@@ -1,0 +1,40 @@
+.auction-details-page {
+    padding: 20px;
+  }
+  
+  .items-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .item-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    width: 200px;
+  }
+  
+  .item-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 12px;
+  }
+  
+  h2, h3 {
+    color: #333;
+  }
+  
+  .item-card h4 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .item-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+  }
+  

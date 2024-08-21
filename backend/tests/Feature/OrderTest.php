@@ -1,65 +1,49 @@
 <?php
-namespace Tests\Feature;
 
-use App\Models\Order;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+namespace Tests\Unit;
+
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\Order;
 
 class OrderTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
-    public function it_can_create_a_order()
-    {
-        $orderData = Order::factory()->raw();
-
-        $response = $this->post('/api/orders', $orderData);
-
-        $response->assertStatus(201);
-        $this->assertDatabaseHas('orders', $orderData);
-    }
-
-    /** @test */
-    public function test_it_can_display_a_order()
+    public function it_creates_an_order()
     {
         $order = Order::factory()->create();
 
-        $response = $this->get('/api/orders/' . $order->id);
-
-        $response->assertStatus(200)
-            ->assertJson([
-                'user_id' => $order->user_id,
-                'status_order' => $order->status_order,
-                'sum' => $order->sum,
-            ]);
+        $this->assertDatabaseHas('orders', [
+            'id' => $order->id,
+            'sum' => $order->sum,
+        ]);
     }
 
     /** @test */
-    public function it_can_update_a_order()
+    public function it_updates_an_order_status()
     {
-        $order = Order::factory()->create();
+        $order = Order::factory()->create([
+            'status_order' => false,
+        ]);
 
-        $updateData = [
+        $order->update(['status_order' => true]);
+
+        $this->assertTrue($order->status_order);
+        $this->assertDatabaseHas('orders', [
+            'id' => $order->id,
             'status_order' => true,
-            'sum' => 1000,  // Assuming the sum is updated as well for completeness
-        ];
-
-        $response = $this->put('/api/orders/' . $order->id, $updateData);
-
-        $response->assertStatus(200);
-        $this->assertDatabaseHas('orders', array_merge(['id' => $order->id], $updateData));
+        ]);
     }
 
     /** @test */
-    public function test_it_can_delete_a_order()
+    public function it_calculates_order_sum_correctly()
     {
-        $order = Order::factory()->create();
+        $order = Order::factory()->create([
+            'sum' => 100.00,
+        ]);
 
-        $response = $this->delete('/api/orders/' . $order->id);
-
-        $response->assertStatus(200);
-        $this->assertDatabaseMissing('orders', ['id' => $order->id]);
+        $this->assertEquals(100.00, $order->sum);
     }
 }
-

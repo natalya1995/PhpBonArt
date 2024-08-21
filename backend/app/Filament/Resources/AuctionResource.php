@@ -12,7 +12,7 @@ use App\Filament\Resources\AuctionResource\Pages;
 class AuctionResource extends Resource
 {
     protected static ?string $model = Auction::class;
-
+    protected static ?string $navigationIcon ='heroicon-s-scale';
     public static function form(Form $form): Form
     {
         return $form
